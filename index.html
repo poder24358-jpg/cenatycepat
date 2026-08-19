@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boletas CENAT / CEPAT</title>
     <link rel="stylesheet" href="style1.css">
+    <style>
+        .site-header{background:#fff;border-bottom:1px solid #eee}
+        .brand-actions{display:flex;justify-content:space-between;align-items:center;padding:14px 16px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:110px;height:auto}
+        .site-title{margin:0;font-size:22px;color:#333}
+        @media (max-width:820px){.brand-actions{flex-direction:column;align-items:flex-start;gap:8px}.logo{width:100px}}
+    </style>
 </head>
 <body>
 
@@ -27,6 +35,20 @@
             </div>
         </div>
     </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="brand-actions">
+                <div class="brand">
+                    <img class="logo" src="images/licencias22.png" alt="Logo Licencias BA">
+                    <div>
+                        <h1 class="site-title">LICENCIAS<span style="font-weight:800;color:#0a6f6f">BA</span></h1>
+                        <p class="site-sub" style="margin:2px 0 0 0;color:#666;font-size:13px">Ministerio de Infraestructura y Servicios Públicos</p>
+                    </div>
+                </div>
+                <div class="actions" aria-hidden="true"></div>
+            </div>
+        </div>
+    </header>
     <header class="top-bar">
         INFORMACIÓN IMPORTANTE. PRESIONE AQUÍ PARA ADERIR
     </header>

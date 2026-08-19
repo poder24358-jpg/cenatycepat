@@ -5,18 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LICENCIAS BA - Formulario</title>
     <link rel="stylesheet" href="style2.css">
+    <style>
+        .site-header{background:#fff;border-bottom:1px solid #eee}
+        .brand-actions{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:110px;height:auto}
+        .site-title{margin:0;font-size:22px;color:#333}
+        .back-btn{background:transparent;border:2px solid #00b3b3;color:#00b3b3;padding:8px 12px;border-radius:8px;text-decoration:none}
+        @media (max-width:820px){.brand-actions{flex-direction:column;align-items:flex-start;gap:8px}.logo{width:100px}}
+    </style>
 </head>
 <body>
-    <header class="page2-header">
-        <div class="logo-area">
-            <h1>LICENCIASBA</h1>
-            <img src="images/licencias22.png" alt="Logo BA" style="flex-shrink: 0; width: 70px; height: 56px;">
-        </div>
-        
-        <div class="header-blue-bar">
-            <span>Bienvenido</span>
+    <header class="site-header">
+        <div class="container">
+            <div class="brand-actions">
+                <div class="brand">
+                    <img class="logo" src="images/licencias22.png" alt="Logo Licencias BA">
+                    <div>
+                        <h1 class="site-title">LICENCIAS<span style="font-weight:800;color:#0a6f6f">BA</span></h1>
+                        <p class="site-sub" style="margin:2px 0 0 0;color:#666;font-size:13px">Ministerio de Infraestructura y Servicios Públicos</p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="index.html" class="back-btn">VOLVER</a>
+                </div>
+            </div>
         </div>
     </header>
+    <div class="header-blue-bar">
+        <span>Bienvenido</span>
+    </div>
 
     <div class="page2-container">
         <main class="page2-main-content">
