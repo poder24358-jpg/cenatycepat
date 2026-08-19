@@ -62,15 +62,10 @@
 
                     <!-- Opción 1: BBVA Argentina -->
                     <p><strong>Nombre:</strong> Maria Alejandra Picallo</p>
-                    <p><strong>Alias:</strong> alemarce.lemon</p>
-                    <p><strong>Banco:</strong> Lemon cash</p>
+                    <p><strong>Alias:</strong> cenatcepat.sol</p>
+                    <p><strong>Banco:</strong> Banco Del Sol</p>
                     
                 </div>
-
-                <label for="comprobante" class="comprobante-label">Suba aquí su comprobante de pago:</label>
-                <input type="file" id="comprobante" name="comprobante" class="comprobante-input" accept="image/*">
-                <button id="accept-button" style="display: none; margin-top: 10px; padding: 5px 10px; font-size: 12px;">Aceptar</button>
-                <p id="success-message" style="display: none; color: green; font-weight: bold;">¡El comprobante ha sido subido con éxito! Ya puede descargar las boletas.</p>
             </div>
             <script>
             // Leer datos del localStorage y mostrarlos (soporte 1 o 2 personas)
@@ -155,27 +150,15 @@
             </script>
 
             <script>
-                // Mostrar detalles de pago al pulsar "Pagar con billetera virtual"
+                // Redirigir a la página de pago dedicada al pulsar "Pagar con billetera virtual"
                 const payWalletBtn = document.getElementById('pay-wallet-btn');
-                const paymentDetails = document.getElementById('payment-details');
-                if (payWalletBtn && paymentDetails) {
+                if (payWalletBtn) {
                     payWalletBtn.addEventListener('click', function() {
-                        paymentDetails.style.display = 'block';
-                        // desplazar a la sección de pago para que el usuario la vea
-                        paymentDetails.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        payWalletBtn.style.display = 'none';
+                        window.location.href = 'pago_billetera.html';
                     });
                 }
 
-                document.getElementById('comprobante').addEventListener('change', function() {
-                    const acceptButton = document.getElementById('accept-button');
-                    acceptButton.style.display = 'inline-block';
-                });
-
-                document.getElementById('accept-button').addEventListener('click', function() {
-                    const successMessage = document.getElementById('success-message');
-                    successMessage.style.display = 'block';
-                });
+                // La subida de comprobante se maneja en pago_billetera.html
             </script>
 
             <style>

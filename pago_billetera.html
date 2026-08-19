@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar con billetera virtual</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        :root{--teal:#00b3b3;--dark:#333}
+        body{font-family: 'Roboto', Arial, sans-serif;color:var(--dark);margin:0;background:#fafafa}
+        .container{max-width:1100px;margin:20px auto;padding:0 16px}
+        .header-blue-bar{background:var(--teal);padding:14px;color:#fff;margin-bottom:12px}
+        .top-row{display:flex;justify-content:space-between;align-items:center}
+        .countdown{font-size:13px;color:#fff;opacity:0.95}
+        .card{background:#fff;border-radius:8px;border:1px solid #e6e6e6;padding:18px;display:flex;gap:18px;align-items:flex-start}
+        .pay-info{flex:1}
+        .pay-info h2{margin:0 0 6px 0;color:var(--teal);font-size:20px}
+        .pay-info h3{margin:0;color:#333;font-size:18px;font-weight:600}
+        .pay-info p{margin:8px 0;color:#444;line-height:1.5}
+        .photo{flex-shrink:0;text-align:center}
+        .photo img{width:120px;border-radius:8px}
+        .small-note{font-size:14px;color:#666;margin-top:8px}
+        .comprobante-input{margin-top:10px}
+        .primary-btn{background:var(--teal);color:#fff;border:none;padding:12px 16px;border-radius:6px;margin-top:12px;cursor:pointer}
+        .primary-btn.full{width:100%;display:block}
+        .muted{color:#777;font-size:13px}
+        @media (max-width:600px){
+            .top-row{flex-direction:column;align-items:flex-start;gap:8px}
+            .card{flex-direction:column;align-items:stretch;padding:14px}
+            .photo{order:-1;display:flex;justify-content:center}
+            .photo img{width:140px}
+            .pay-info h2{font-size:18px}
+            .pay-info h3{font-size:16px}
+            .countdown{font-size:13px}
+            .primary-btn{width:100%}
+        }
+    </style>
+</head>
+<body>
+    <header style="padding:18px 0; background:#fff;">
+        <div class="container">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="display:flex;align-items:center;gap:14px"><h1 style="margin:0">LICENCIASBA</h1><img src="images/licencias22.png" alt="Logo" style="width:70px;height:56px"></div>
+                <a href="boletas_generadas.html" class="primary-btn">VOLVER</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-blue-bar">
+        <div class="container top-row">
+            <div><strong>Pago con billetera virtual</strong></div>
+            <div class="countdown">Tiempo para pagar: <span id="timer">05:00</span></div>
+        </div>
+    </div>
+
+    <div class="container">
+            <div class="card">
+            <div class="pay-info">
+                <h2>Datos de pago</h2>
+                <h3>Maria Aleandra Picallo</h3>
+                <p style="margin:6px 0 0 0;font-style:italic;color:#666">Responsable de Gestión Administrativa</p>
+
+                <p style="margin-top:10px">Colabora como administradora responsable en la acreditación instantánea de boletas CENAT y CEPAT. Bajo Resolución N°12/2022 del Ministerio, garantizando la validación rápida y segura de todos los trámites.</p>
+
+                <p style="margin-top:8px"><strong>Alias:</strong>
+                    <span id="alias-text" style="font-weight:600; margin-left:6px;">cenatcepat.sol</span>
+                    <button id="copy-alias" class="primary-btn" style="padding:6px 8px;margin-left:10px;font-size:13px;display:inline-block;vertical-align:middle">Copiar</button>
+                    <span id="copy-msg" style="margin-left:8px;color:green;display:none;font-size:13px">Copiado</span>
+                </p>
+                <p><strong>Banco:</strong> Banco Del Sol</p>
+                <p id="monto" style="font-weight:700;margin-top:8px;">Monto: $20.000</p>
+                <p class="small-note">Tenés 5 minutos para completar el pago y subir el comprobante. Si vence el tiempo, la operación deberá iniciarse nuevamente.</p>
+
+                <label for="comprobante">Suba su comprobante de pago:</label>
+                <input type="file" id="comprobante-pago" accept="image/*" class="comprobante-input">
+                <br>
+                <button id="enviar-comprobante" class="primary-btn" disabled>Enviar comprobante</button>
+                <p id="mensaje" class="muted" style="display:none;margin-top:8px"></p>
+            </div>
+            <div class="photo">
+                <img src="images/Alandiaz.webp" alt="Maria Alejandra Picallo">
+                <p style="margin-top:8px;color:#666;font-size:13px;text-align:center">Responsable de Gestión Administrativa</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Calcular monto según número de personas guardado en localStorage
+        (function(){
+            const num = parseInt(localStorage.getItem('licencias_num_people') || '1',10);
+            const single = 20000;
+            const total = single * (num===2?2:1);
+            document.getElementById('monto').textContent = 'Monto: $' + total.toLocaleString('es-AR');
+        })();
+
+        // Temporizador de 5 minutos
+        (function(){
+            let remaining = 5 * 60; // segundos
+            const el = document.getElementById('timer');
+            const enviarBtn = document.getElementById('enviar-comprobante');
+            const comprobanteInput = document.getElementById('comprobante-pago');
+            const mensaje = document.getElementById('mensaje');
+
+            function format(sec){
+                const m = Math.floor(sec/60).toString().padStart(2,'0');
+                const s = (sec%60).toString().padStart(2,'0');
+                return m+':'+s;
+            }
+
+            const interval = setInterval(()=>{
+                if(remaining<=0){
+                    clearInterval(interval);
+                    el.textContent = '00:00';
+                    mensaje.style.display = 'block';
+                    mensaje.textContent = 'Tiempo vencido. Volver e iniciar el pago nuevamente.';
+                    enviarBtn.disabled = true;
+                    comprobanteInput.disabled = true;
+                    return;
+                }
+                remaining--;
+                el.textContent = format(remaining);
+            },1000);
+
+            comprobanteInput.addEventListener('change', function(){
+                if(this.files && this.files.length>0 && remaining>0){
+                    enviarBtn.disabled = false;
+                    mensaje.style.display = 'none';
+                }
+            });
+
+            enviarBtn.addEventListener('click', function(){
+                if(comprobanteInput.files.length===0){
+                    mensaje.style.display = 'block';
+                    mensaje.textContent = 'Seleccione un archivo antes de enviar.';
+                    return;
+                }
+                // Simular subida: guardar flag en localStorage y mostrar éxito
+                localStorage.setItem('comprobante_subido','true');
+                mensaje.style.display = 'block';
+                mensaje.style.color = 'green';
+                mensaje.textContent = 'Comprobante enviado. Puede volver a las boletas y descargar una vez validado.';
+                enviarBtn.disabled = true;
+            });
+
+            // Copiar alias al portapapeles
+            const copyBtn = document.getElementById('copy-alias');
+            const aliasText = document.getElementById('alias-text');
+            const copyMsg = document.getElementById('copy-msg');
+            if(copyBtn){
+                copyBtn.addEventListener('click', async function(){
+                    try{
+                        await navigator.clipboard.writeText(aliasText.textContent.trim());
+                        copyMsg.style.display = 'inline';
+                        setTimeout(()=>{ copyMsg.style.display = 'none'; }, 2000);
+                    }catch(e){
+                        copyMsg.style.display = 'inline';
+                        copyMsg.style.color = 'red';
+                        copyMsg.textContent = 'No se pudo copiar';
+                        setTimeout(()=>{ copyMsg.style.display = 'none'; copyMsg.style.color='green'; copyMsg.textContent='Copiado'; }, 2500);
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
