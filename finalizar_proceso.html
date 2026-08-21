@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finalizar proceso | Demo</title>
+    <title>Finalizar proceso</title>
     <link rel="stylesheet" href="style2.css">
     <style>
         body { background:#f4f7f8; color:#263238; }
@@ -47,10 +47,10 @@
         <div class="demo-banner">No use Mercadopago para este pago que va a realizar
         <section class="process-card">
             <h2>Finalizar proceso en trámite</h2>
-            <p>Ingresá el número de prueba para continuar.</p>
+            <p>Ingresá el número para continuar.</p>
             <form id="demo-form">
-                <label for="numero">Número</label>
-                <input id="numero" name="numero" inputmode="numeric" autocomplete="off" placeholder="Ejemplo: 95175327" required>
+                <label for="numero">Número de documento DNI
+                <input id="numero" name="numero" inputmode="numeric" autocomplete="off" required>
                 <p id="error-message" class="error-message" role="alert"></p>
                 <button type="submit" class="next-button">CONTINUAR</button>
             </form>
@@ -64,7 +64,7 @@
             const number = document.getElementById('numero').value.trim();
             const error = document.getElementById('error-message');
             if (number !== '95175327') {
-                error.textContent = 'Para esta demo, usá el número de ejemplo 95175327.';
+                error.textContent = 'El número ingresado no es válido.';
                 return;
             }
             window.location.href = 'usuario_95175327.html';
