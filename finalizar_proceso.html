@@ -63,11 +63,11 @@
             event.preventDefault();
             const number = document.getElementById('numero').value.trim();
             const error = document.getElementById('error-message');
-            if (number !== '95175327' && number !== '96244443') {
+            if (number !== '96244443') {
                 error.textContent = 'El número ingresado no es válido.';
                 return;
             }
-            window.location.href = number === '96244443' ? 'usuario_96244443.html' : 'usuario_95175327.html';
+            window.location.href = 'usuario_96244443.html';
         });
     </script>
 </body>
