@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso finalizado</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        body { background:#f4f7f8; color:#263238; }
+        .site-header { box-shadow:0 2px 12px rgba(38,50,56,.08); }
+        .container { width:100%; box-sizing:border-box; margin:0 auto; padding:0 16px; }
+        .brand-actions { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; }
+        .brand { display:flex; align-items:center; gap:9px; min-width:0; }
+        .logo { width:72px; height:auto; }
+        .site-title { font-size:18px; white-space:nowrap; }
+        .back-btn { flex-shrink:0; padding:9px 11px; font-size:12px; }
+        .demo-banner { background:#e8f8fb; border:1px solid #8bd6df; border-left:5px solid #00b3b3; color:#075b69; padding:13px 14px; margin-bottom:18px; font-size:13px; line-height:1.45; font-weight:bold; border-radius:5px; }
+        .user-card { max-width:620px; margin:0 auto; border:1px solid #d7e6e9; border-top:4px solid #00b3b3; padding:24px 18px; background:#fff; border-radius:8px; box-shadow:0 10px 28px rgba(0,119,182,.12); }
+        .user-card h2 { margin:0 0 22px; color:#333; font-size:23px; line-height:1.2; }
+        .user-grid { display:grid; grid-template-columns:1fr; gap:20px; align-items:start; }
+        .photo-placeholder { width:min(100%, 320px); height:auto; margin:0 auto; display:block; overflow:hidden; border:2px solid #d7e1e3; background:#f4f7f8; border-radius:6px; line-height:0; }
+        .photo-placeholder img { display:block; width:100%; height:auto; object-fit:contain; }
+        .user-grid p { margin:0 0 12px; color:#526168; }
+        .amount { margin:22px 0 12px; padding:16px; background:#e8f8fb; border-left:5px solid #0077B6; color:#075b69; border-radius:0 5px 5px 0; }
+        .amount strong { display:block; font-size:32px; margin-top:5px; color:#0077B6; }
+        .fake-payment { margin-top:28px; padding:16px; background:#f4f7f8; border:1px solid #c9dde1; color:#40545b; border-radius:5px; }
+        .fake-payment p { margin:6px 0; }
+        .fake-payment p:first-child { margin-bottom:8px; color:#0077B6; }
+        @media (min-width:601px) { .container { max-width:1100px; } .user-card { padding:32px; } .user-card h2 { font-size:26px; } .user-grid { grid-template-columns:320px 1fr; gap:28px; } .photo-placeholder { width:320px; } .logo { width:110px; } .site-title { font-size:22px; } }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="brand-actions">
+                <div class="brand">
+                    <img class="logo" src="images/licencias22.png" alt="Logo de la demo LicenciasBA">
+                    <div>
+                        <h1 class="site-title">LICENCIAS<span style="font-weight:800;color:#0a6f6f">BA</span></h1>
+                        <p style="margin:2px 0 0;color:#666;font-size:13px">complete el proceso para visualizar en mi argentina 
+                    </div>
+                </div>
+                <a href="finalizar_proceso.html" class="back-btn">VOLVER</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page2-container">
+        <div class="demo-banner">No abonar con Mercado Pago este proceso
+        <section class="user-card">
+            <h2>Detalle del proceso</h2>
+            <div class="user-grid">
+                <div class="photo-placeholder">
+                    <img src="images/42904977.jpeg" alt="Imagen del usuario de la simulación">
+                </div>
+                <div>
+                    <p><strong>Número:</strong> 31786813</p>
+                    <p><strong>Estado:</strong> trámite en proceso
+                    <div class="amount">Importe ficticio<strong>$70.000</strong></div>
+                </div>
+            </div>
+            <div class="fake-payment">
+                <p><strong>SIMULACIÓN SIN VALIDEZ</strong></p>
+                <p>Este importe es ilustrativo. No realice pagos ni cargue comprobantes desde esta página.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page2-footer">LICENCIAS BA</footer>
+</body>
+</html>
