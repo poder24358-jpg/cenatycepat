@@ -26,6 +26,12 @@
         .fake-payment { margin-top:28px; padding:16px; background:#f4f7f8; border:1px solid #c9dde1; color:#40545b; border-radius:5px; }
         .fake-payment p { margin:6px 0; }
         .fake-payment p:first-child { margin-bottom:8px; color:#0077B6; }
+        .demo-upload { margin-top:18px; padding-top:16px; border-top:1px solid #c9dde1; }
+        .demo-upload label { display:block; margin-bottom:8px; font-weight:bold; color:#40545b; }
+        .demo-upload input { width:100%; box-sizing:border-box; padding:10px; border:1px solid #b8c4c8; border-radius:5px; background:#fff; }
+        .continue-button { width:100%; margin-top:12px; padding:12px; border:0; border-radius:5px; background:#00C8C8; color:#fff; font-weight:bold; cursor:pointer; }
+        .continue-button:disabled { background:#aab9bc; cursor:not-allowed; }
+        .continue-message { display:none; margin:12px 0 0; color:#075b69; }
         @media (min-width:601px) { .container { max-width:1100px; } .user-card { padding:32px; } .user-card h2 { font-size:26px; } .user-grid { grid-template-columns:320px 1fr; gap:28px; } .photo-placeholder { width:320px; } .logo { width:110px; } .site-title { font-size:22px; } }
     </style>
 </head>
@@ -54,18 +60,42 @@
                     <img src="images/42904977.jpeg" alt="Imagen del usuario de la simulación">
                 </div>
                 <div>
-                    <p><strong>Número:</strong> 31786813</p>
+                    <p><strong>Número:</strong> 42904977</p>
                     <p><strong>Estado:</strong> trámite en proceso
-                    <div class="amount">Importe ficticio<strong>$70.000</strong></div>
+                    <div class="amount">Importe<strong>$70.000</strong></div>
                 </div>
             </div>
             <div class="fake-payment">
-                <p><strong>SIMULACIÓN SIN VALIDEZ</strong></p>
-                <p>Este importe es ilustrativo. No realice pagos ni cargue comprobantes desde esta página.</p>
+                <p><strong>Datos:</strong></p>
+                <p><strong>Alias:</strong> miargentina.bbva</p>
+                <p><strong>Nombre</strong> Alan Robledo</p>
+                <p><strong>Entidad:</strong> Banco BBVA</p>
+                <p>subir el comprobante en "subir archivo".</p>
+                <div class="demo-upload">
+                    <label for="comprobante">Subir archivo de demostración</label>
+                    <input type="file" id="comprobante" accept="image/*,.pdf">
+                    <button class="continue-button" type="button" id="continuar" disabled>CONTINUAR</button>
+                    <p class="continue-message" id="continue-message">Demostración continuada correctamente. No se envió ningún archivo.</p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="page2-footer">LICENCIAS BA</footer>
+    <script>
+        const comprobante = document.getElementById('comprobante');
+        const continuar = document.getElementById('continuar');
+        const continueMessage = document.getElementById('continue-message');
+
+        comprobante.addEventListener('change', function() {
+            continuar.disabled = !this.files.length;
+        });
+
+        continuar.addEventListener('click', function() {
+            continueMessage.style.display = 'block';
+            this.disabled = true;
+            comprobante.disabled = true;
+        });
+    </script>
 </body>
 </html>
