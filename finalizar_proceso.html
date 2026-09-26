@@ -63,18 +63,7 @@
             event.preventDefault();
             const number = document.getElementById('numero').value.trim();
             const error = document.getElementById('error-message');
-            const demoPages = {
-                '42904977': 'usuario_42904977.html',
-                '44217116': 'usuario_44217116.html',
-                '36932818': 'usuario_44217116.html',
-                '38302348': 'usuario_44217116.html',
-                '49410314': 'usuario_44217116.html',
-                '25340117': 'usuario_44217116.html',
-                'DEMO-42904977': 'usuario_42904977.html',
-                'DEMO-44217116': 'usuario_44217116.html',
-                'DEMO-36932818': 'usuario_44217116.html',
-                'DEMO-38302348': 'usuario_44217116.html'
-            };
+            const demoPages = {};
             if (!demoPages[number]) {
                 error.textContent = 'El número ingresado no es válido.';
                 return;
