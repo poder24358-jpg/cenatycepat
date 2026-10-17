@@ -72,26 +72,7 @@
         });
     </script>
     <script>
-  const form = document.getElementById('demo-form');
-  const inputNumero = document.getElementById('numero');
-  const errorMessage = document.getElementById('error-message');
-
-  form.addEventListener('submit', function(event) {
-    // Evita que la página se recargue automáticamente
-    event.preventDefault(); 
-
-    // Obtiene el valor ingresado y elimina espacios sobrantes
-    const dni = inputNumero.value.trim();
-
-    // Comprueba si el código/DNI ingresado es el correcto
-    if (dni === "40391600") {
-      errorMessage.textContent = ""; // Limpia mensajes de error
-      // Redirige a la página del usuario deseada
-      window.location.href = "usuario_44217116.html";
-    } else {
-      // Muestra mensaje de error si el número es distinto
-      errorMessage.textContent = "El número ingresado no es válido.";
-    }
+  
   });
 </script>
 </body>
