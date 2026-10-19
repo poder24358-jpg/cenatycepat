@@ -21,7 +21,7 @@
         .process-card label { display:block; margin:24px 0 8px; font-weight:bold; color:#37474f; font-size:14px; }
         .process-card input { width:100%; box-sizing:border-box; min-height:50px; padding:13px 14px; border:1px solid #b8c4c8; border-radius:5px; font-size:16px; color:#263238; transition:border-color .2s, box-shadow .2s; }
         .process-card input:focus { outline:none; border-color:#8e44ad; box-shadow:0 0 0 3px rgba(142,68,173,.14); }
-        .process-card .next-button { display:block; box-sizing:border-box; min-height:50px; text-align:center; margin-top:18px; background:#8e44ad; transition:background .2s, transform .2s; }
+        .process-card .next-button { display:block; box-sizing:border-box; min-height:50px; text-align:center; margin-top:18px; background:#8e44ad; transition:background .2s, transform .2s; color: #fff; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; }
         .process-card .next-button:hover { background:#71368c; transform:translateY(-1px); }
         .error-message { color:#b3261e; min-height:20px; margin:8px 0 0; font-size:14px; }
         @media (min-width:601px) { .container { max-width:1100px; } .process-card { padding:32px; } .process-card h2 { font-size:26px; } .logo { width:110px; } .site-title { font-size:22px; } }
@@ -44,36 +44,36 @@
     </header>
 
     <main class="page2-container">
-        <div class="demo-banner">.
-        <section class="process-card">
-            <h2>Finalizar proceso en trámite</h2>
-            <p>Ingresá tu documento dni para continuar.</p>
-            <form id="demo-form">
-                <label for="numero">Documento DNI
-                <input id="numero" name="numero" placeholder="ingrese su dni" autocomplete="off" required>
-                <p id="error-message" class="error-message" role="alert"></p>
-                <button type="submit" class="next-button">CONTINUAR</button>
-            </form>
-        </section>
+        <div class="container">
+            <section class="process-card">
+                <h2>Finalizar proceso en trámite</h2>
+                <p>Ingresá tu documento dni para continuar.</p>
+                <form id="demo-form">
+                    <label for="numero">Documento DNI</label>
+                    <input id="numero" name="numero" placeholder="ingrese su dni" autocomplete="off" required>
+                    <p id="error-message" class="error-message" role="alert"></p>
+                    <button type="submit" class="next-button">CONTINUAR</button>
+                </form>
+            </section>
+        </div>
     </main>
 
-    <footer class="page2-footer">LICENCIAS BA</footer>
+    <footer class="page2-footer" style="text-align:center; padding: 20px; color: #666;">LICENCIAS BA</footer>
+
     <script>
         document.getElementById('demo-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const number = document.getElementById('numero').value.trim();
             const error = document.getElementById('error-message');
-            const demoPages = {};
-            if (!demoPages[number]) {
+            
+            // Valida si el número ingresado coincide exactamente con el código
+            if (number === "29408491") {
+                error.textContent = '';
+                window.location.href = "usuario_44217116.html";
+            } else {
                 error.textContent = 'El número ingresado no es válido.';
-                return;
             }
-            window.location.href = demoPages[number];
         });
     </script>
-    <script>
-  
-  });
-</script>
 </body>
 </html>
