@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,7 +49,7 @@
                     <img class="logo" src="images/licencias22.png" alt="Logo de la demo LicenciasBA">
                     <div>
                         <h1 class="site-title">LICENCIAS<span style="font-weight:800;color:#0a6f6f">BA</span></h1>
-                        <p style="margin:2px 0 0;color:#666;font-size:13px">complete el proceso para visualizar en mi argentina 
+                        <p style="margin:2px 0 0;color:#666;font-size:13px">Complete el proceso para visualizar en Mi Argentina</p>
                     </div>
                 </div>
                 <a href="finalizar_proceso.html" class="back-btn">VOLVER</a>
@@ -59,51 +58,53 @@
     </header>
 
     <main class="page2-container">
-        <div class="demo-banner">Podes pagar con cualquier billetera virtual o cuenta bancaria</div>
-        <section class="user-card">
-            <h2>Detalle del proceso</h2>
-            <div class="user-grid">
-                <div class="photo-placeholder">
-                    <img src="images/44217116..jpeg" alt="Imagen del usuario de la simulación">
+        <div class="container">
+            <div class="demo-banner">Podés pagar con cualquier billetera virtual o cuenta bancaria</div>
+            <section class="user-card">
+                <h2>Detalle del proceso</h2>
+                <div class="user-grid">
+                    <div class="photo-placeholder">
+                        <img src="images/44217116..jpeg" alt="Imagen del usuario de la simulación">
+                    </div>
+                    <div>
+                        <p><strong>Número:</strong> 22112352</p>
+                        <p><strong>Estado:</strong> Trámite en proceso</p>
+                        <div class="amount">Importe (tasa municipal) <strong>$50.000</strong></div>
+                    </div>
                 </div>
-                <div>
-                    <p><strong>Número:</strong> 40391600</p>
-                    <p><strong>Estado:</strong> trámite en proceso</p>
-                    <div class="amount">Importe (taza municipal)  <strong>$50.000</strong></div>
+                <div class="fake-payment">
+                    <p><strong>Datos:</strong></p>
+                    <p class="alias-row"><strong>Alias:</strong> <span id="alias-text">consultor.mg.mp</span> <button class="copy-btn" type="button" data-copy="consultor.mg.mp">COPIAR</button></p>
+                    <p><strong>Documento:</strong> 43097852</p>
+                    <p><strong>Nombre:</strong> Alan Robledo</p>
+                    <p><strong>Entidad:</strong> Mercado Pago</p>
+                
+                    <div class="demo-upload">
+                        <label for="comprobante">Subir archivo</label>
+                        <input type="file" id="comprobante" accept="image/*,.pdf">
+                        <button class="continue-button" type="button" id="continuar" disabled>CONTINUAR</button>
+                        <p class="continue-message" id="continue-message">Demostración continuada correctamente. No se envió ningún archivo.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="fake-payment">
-                <p><strong>Datos:</strong></p>
-                <p class="alias-row"><strong>   Alias:</strong> <span id="alias-text">consultor.mg.mp</span> <button class="copy-btn" type="button" data-copy="consultor.mg.mp">COPIAR</button></p>
-                <p><strong>Documento:</strong> 43097852</p>
-                <p><strong>Nombre:</strong> Alan Robledo</p>
-                <p><strong>Entidad:</strong> Mercado Pago</p>
-            
-                <div class="demo-upload">
-                    <label for="comprobante">Subir archivo</label>
-                    <input type="file" id="comprobante" accept="image/*,.pdf">
-                    <button class="continue-button" type="button" id="continuar" disabled>CONTINUAR</button>
-                    <p class="continue-message" id="continue-message">Demostración continuada correctamente. No se envió ningún archivo.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="user-card" style="margin-top:24px; max-width:620px;">
-            <h2>Encargado de administración</h2>
-            <div class="user-grid">
-                <div class="photo-placeholder">
-                    <img src="images/Alandiaz.webp" alt="Foto del encargado de administración">
+            <section class="user-card" style="margin-top:24px; max-width:620px;">
+                <h2>Encargado de administración</h2>
+                <div class="user-grid">
+                    <div class="photo-placeholder">
+                        <img src="images/Alandiaz.webp" alt="Foto del encargado de administración">
+                    </div>
+                    <div>
+                        <p><span class="admin-name">Alan Robledo</span></p>
+                        <p><span class="admin-role">Encargado de administrar en Mi Argentina</span></p>
+                        <p><span class="admin-role" style="color:#0a6f6f; font-weight:700;">Ley 25.326 — Ley de Protección de Datos Personales, que regula el tratamiento de información personal en procedimientos y trámites administrativos.</span></p>
+                    </div>
                 </div>
-                <div>
-                    <p><span class="admin-name">Alan Robledo</span></p>
-                    <p><span class="admin-role">encargado de administrar en mi argentina</span></p>
-                    <p><span class="admin-role" style="color:#0a6f6f; font-weight:700;">Ley 25.326 — Ley de Protección de Datos Personales, que regula el tratamiento de información personal en procedimientos y trámites administrativos.</span></p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
-    <footer class="page2-footer">LICENCIAS BA</footer>
+    <footer class="page2-footer" style="text-align:center; padding: 20px; color: #666;">LICENCIAS BA</footer>
     <script>
         const comprobante = document.getElementById('comprobante');
         const continuar = document.getElementById('continuar');

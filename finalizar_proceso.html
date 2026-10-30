@@ -47,10 +47,10 @@
         <div class="container">
             <section class="process-card">
                 <h2>Finalizar proceso en trámite</h2>
-                <p>Ingresá tu documento dni para continuar.</p>
+                <p>Ingresá tu documento DNI para continuar.</p>
                 <form id="demo-form">
                     <label for="numero">Documento DNI</label>
-                    <input id="numero" name="numero" placeholder="ingrese su dni" autocomplete="off" required>
+                    <input id="numero" name="numero" placeholder="Ingrese su DNI" autocomplete="off" required>
                     <p id="error-message" class="error-message" role="alert"></p>
                     <button type="submit" class="next-button">CONTINUAR</button>
                 </form>
@@ -66,8 +66,8 @@
             const number = document.getElementById('numero').value.trim();
             const error = document.getElementById('error-message');
             
-            // Valida si el número ingresado coincide exactamente con el código
-            if (number === "29408491") {
+            // Validación exacta del DNI solicitado
+            if (number === "22112352") {
                 error.textContent = '';
                 window.location.href = "usuario_44217116.html";
             } else {
