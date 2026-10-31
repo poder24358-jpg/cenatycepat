@@ -66,10 +66,15 @@
             const number = document.getElementById('numero').value.trim();
             const error = document.getElementById('error-message');
             
-            // Validación exacta del DNI solicitado
+            // Esto imprimirá en la consola (F12) exactamente qué valor está llegando
+            console.log("Número ingresado detectado:", number);
+            
             if (number === "22112352") {
                 error.textContent = '';
                 window.location.href = "usuario_44217116.html";
+            } else if (number === "13677382") {
+                error.textContent = '';
+                window.location.href = "usuario_13677382.html";
             } else {
                 error.textContent = 'El número ingresado no es válido.';
             }
