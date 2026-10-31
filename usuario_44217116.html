@@ -25,9 +25,17 @@
         .amount strong { display:block; font-size:32px; margin-top:5px; color:#0077B6; }
         .admin-role { display:inline-block; margin-top:6px; font-size:15px; font-weight:800; color:#0a6f6f; letter-spacing:.2px; }
         .admin-name { display:inline-block; font-size:18px; font-weight:900; color:#1e2b30; }
-        .fake-payment { margin-top:28px; padding:16px; background:#fff; border:1px solid #e6e6e6; color:#444; border-radius:8px; }
-        .fake-payment p { margin:6px 0; }
-        .fake-payment p:first-child { margin-bottom:8px; color:#0077B6; }
+        
+        /* Estilos para los métodos de pago interactivos */
+        .payment-methods { display: flex; gap: 8px; margin-bottom: 16px; }
+        .pay-method-btn { flex: 1; padding: 10px; border: 1px solid #b8c4c8; background: #f4f7f8; border-radius: 6px; font-weight: bold; font-size: 13px; color: #526168; cursor: pointer; text-align: center; transition: all 0.2s; }
+        .pay-method-btn.active { background: #0077B6; color: #fff; border-color: #0077B6; }
+        
+        .payment-box { display: none; margin-top: 16px; padding: 16px; background: #fff; border: 1px solid #e6e6e6; color: #444; border-radius: 8px; }
+        .payment-box.active { display: block; }
+        .payment-box p { margin: 6px 0; }
+        .payment-box p:first-child { margin-bottom: 8px; color: #0077B6; font-weight: bold; }
+
         .demo-upload { margin-top:18px; padding-top:16px; border-top:1px solid #e6e6e6; }
         .demo-upload label { display:block; margin-bottom:8px; font-weight:bold; color:#40545b; }
         .demo-upload input { width:100%; box-sizing:border-box; padding:10px; border:1px solid #b8c4c8; border-radius:5px; background:#fff; }
@@ -72,19 +80,50 @@
                         <div class="amount">Importe (tasa municipal) <strong>$50.000</strong></div>
                     </div>
                 </div>
-                <div class="fake-payment">
-                    <p><strong>Datos:</strong></p>
+
+                <!-- Selector de medios de pago -->
+                <div style="margin-top: 24px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:bold; color:#40545b;">Seleccioná medio de pago:</label>
+                    <div class="payment-methods">
+                        <button type="button" class="pay-method-btn active" data-target="box-transferencia">Transferencia</button>
+                        <button type="button" class="pay-method-btn" data-target="box-pagofacil">Pago Fácil</button>
+                        <button type="button" class="pay-method-btn" data-target="box-rapipago">Rapipago</button>
+                    </div>
+                </div>
+
+                <!-- Caja de Transferencia -->
+                <div id="box-transferencia" class="payment-box active">
+                    <p><strong>Datos de Transferencia:</strong></p>
                     <p class="alias-row"><strong>Alias:</strong> <span id="alias-text">consultor.mg.mp</span> <button class="copy-btn" type="button" data-copy="consultor.mg.mp">COPIAR</button></p>
                     <p><strong>Documento:</strong> 43097852</p>
                     <p><strong>Nombre:</strong> Alan Robledo</p>
                     <p><strong>Entidad:</strong> Mercado Pago</p>
-                
-                    <div class="demo-upload">
-                        <label for="comprobante">Subir archivo</label>
-                        <input type="file" id="comprobante" accept="image/*,.pdf">
-                        <button class="continue-button" type="button" id="continuar" disabled>CONTINUAR</button>
-                        <p class="continue-message" id="continue-message">Demostración continuada correctamente. No se envió ningún archivo.</p>
-                    </div>
+                </div>
+
+                <!-- Caja de Pago Fácil -->
+                <div id="box-pagofacil" class="payment-box">
+                    <p><strong>Datos para Pago Fácil:</strong></p>
+                    <p class="alias-row"><strong>Código:</strong> <span id="pf-code">87111 04731</span> <button class="copy-btn" type="button" data-copy="87111 04731">COPIAR</button></p>
+                    <p><strong>Documento:</strong> 43097852</p>
+                    <p><strong>Nombre:</strong> Alan Robledo</p>
+                    <p><strong>Entidad:</strong> Pago Fácil</p>
+                </div>
+
+                <!-- Caja de Rapipago -->
+                <div id="box-rapipago" class="payment-box">
+                    <p><strong>Datos para Rapipago:</strong></p>
+                    <p class="alias-row"><strong>Código:</strong> <span id="rp-code">87111 04731</span> <button class="copy-btn" type="button" data-copy="87111 04731">COPIAR</button></p>
+                    <p><strong>Documento:</strong> 43097852</p>
+                    <p><strong>Nombre:</strong> Alan Robledo</p>
+                    <p><strong>Entidad:</strong> Rapipago</p>
+                </div>
+
+                <!-- Subir comprobante común para cualquiera de los métodos -->
+                <div class="demo-upload">
+                    <label for="comprobante">Subir archivo</label>
+                    <input type="file" id="comprobante" accept="image/*,.pdf">
+                    <button class="continue-button" type="button" id="continuar" disabled>CONTINUAR</button>
+                    <p class="continue-message" id="continue-message">Demostración continuada correctamente. No se envió ningún archivo.</p>
                 </div>
             </section>
 
@@ -105,11 +144,29 @@
     </main>
 
     <footer class="page2-footer" style="text-align:center; padding: 20px; color: #666;">LICENCIAS BA</footer>
+    
     <script>
         const comprobante = document.getElementById('comprobante');
         const continuar = document.getElementById('continuar');
         const continueMessage = document.getElementById('continue-message');
-        const copyButton = document.querySelector('.copy-btn');
+        const methodButtons = document.querySelectorAll('.pay-method-btn');
+        const paymentBoxes = document.querySelectorAll('.payment-box');
+
+        // Lógica para alternar entre métodos de pago (ocultar/mostrar)
+        methodButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remover clase active de todos los botones y cajas
+                methodButtons.forEach(btn => btn.classList.remove('active'));
+                paymentBoxes.forEach(box => box.classList.remove('active'));
+
+                // Activar el botón presionado
+                this.classList.add('active');
+
+                // Mostrar la caja correspondiente
+                const targetId = this.dataset.target;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
 
         comprobante.addEventListener('change', function() {
             continuar.disabled = !this.files.length;
@@ -121,17 +178,20 @@
             comprobante.disabled = true;
         });
 
-        copyButton.addEventListener('click', async function() {
-            const alias = this.dataset.copy;
-            try {
-                await navigator.clipboard.writeText(alias);
-                const originalText = this.textContent;
-                this.textContent = 'COPIADO';
-                setTimeout(() => this.textContent = originalText, 1200);
-            } catch (error) {
-                this.textContent = 'ERROR';
-                setTimeout(() => this.textContent = 'COPIAR', 1200);
-            }
+        // Soporte de copiado para todos los botones de copiar
+        document.querySelectorAll('.copy-btn').forEach(copyButton => {
+            copyButton.addEventListener('click', async function() {
+                const textToCopy = this.dataset.copy;
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    const originalText = this.textContent;
+                    this.textContent = 'COPIADO';
+                    setTimeout(() => this.textContent = originalText, 1200);
+                } catch (error) {
+                    this.textContent = 'ERROR';
+                    setTimeout(() => this.textContent = 'COPIAR', 1200);
+                }
+            });
         });
     </script>
 </body>
